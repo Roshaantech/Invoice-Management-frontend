@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import Login from './pages/Login.jsx';
-import Register from './pages/Register.jsx';
+import Login from './pages/login.jsx';
+import Register from './pages/register.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import CreateInvoice from './pages/CreateInvoice.jsx';
 import PublicInvoice from './pages/PublicInvoice.jsx'; // 👈 Public Share & QR View
