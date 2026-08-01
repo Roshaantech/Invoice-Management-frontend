@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+
 const Login = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [showPassword, setShowPassword] = useState(false);
@@ -20,7 +22,7 @@ const Login = () => {
     setError('');
     setLoading(true);
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/login', formData);
+      const res = await axios.post(`${API_URL}/auth/login`, formData);
       login(res.data.user, res.data.token);
       navigate('/dashboard');
     } catch (err) {

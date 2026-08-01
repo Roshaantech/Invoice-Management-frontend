@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+
 const CreateInvoice = ({ onSaveInvoice }) => {
   const navigate = useNavigate();
   const { id } = useParams(); // present only on /edit-invoice/:id
@@ -29,7 +31,7 @@ const CreateInvoice = ({ onSaveInvoice }) => {
     const fetchInvoice = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch(`http://localhost:5000/api/invoice/${id}`, {
+        const response = await fetch(`${API_URL}/invoice/${id}`, {
           headers: {
             'Authorization': token ? `Bearer ${token}` : '',
             'Content-Type': 'application/json'
@@ -151,8 +153,8 @@ const CreateInvoice = ({ onSaveInvoice }) => {
       const token = localStorage.getItem('token');
 
       const url = isEditMode
-        ? `http://localhost:5000/api/invoice/${id}`
-        : 'http://localhost:5000/api/invoice';
+        ? `${API_URL}/invoice/${id}`
+        : `${API_URL}/invoice`;
 
       const response = await fetch(url, {
         method: isEditMode ? 'PUT' : 'POST',
