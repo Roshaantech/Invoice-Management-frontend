@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { Eye, EyeOff } from 'lucide-react';
 import { AuthContext } from '../context/AuthContext';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
@@ -42,12 +43,41 @@ const Login = () => {
             <div className="brand-logo-row">
               {/* Custom Branded SVG Logo */}
               <div className="brand-icon">
-                <svg className="brand-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                  <polyline points="14 2 14 8 20 8"></polyline>
-                  <line x1="16" y1="13" x2="8" y2="13"></line>
-                  <line x1="16" y1="17" x2="8" y2="17"></line>
-                  <polyline points="10 9 9 9 8 9"></polyline>
+                <svg width="40" height="40" viewBox="0 0 120 120">
+                  <defs>
+                    <path id="loginTopCirclePath" d="M 15,60 A 45,45 0 0 1 105,60" fill="none" />
+                    <path id="loginBottomCirclePath" d="M 105,62 A 45,45 0 0 1 15,62" fill="none" />
+                  </defs>
+
+                  <circle cx="60" cy="60" r="56" fill="none" stroke="currentColor" strokeWidth="2.5" />
+                  <circle cx="60" cy="60" r="48" fill="none" stroke="currentColor" strokeWidth="1.2" />
+
+                  <text fill="currentColor" fontSize="12" fontWeight="800" letterSpacing="3">
+                    <textPath href="#loginTopCirclePath" startOffset="50%" textAnchor="middle">
+                      INVOICE
+                    </textPath>
+                  </text>
+
+                  <text fill="currentColor" fontSize="12" fontWeight="800" letterSpacing="3">
+                    <textPath href="#loginBottomCirclePath" startOffset="50%" textAnchor="middle">
+                      INVOICE
+                    </textPath>
+                  </text>
+
+                  <g transform="rotate(-14 60 60)">
+                    <rect x="14" y="50" width="92" height="22" fill="currentColor" />
+                    <text
+                      x="60"
+                      y="66"
+                      fill="#0e1420"
+                      fontSize="16"
+                      fontWeight="900"
+                      textAnchor="middle"
+                      letterSpacing="1"
+                    >
+                      INVOICE
+                    </text>
+                  </g>
                 </svg>
               </div>
               <h1 className="brand-title">Invoice<span>Hub</span></h1>
@@ -116,7 +146,6 @@ const Login = () => {
               <div className="form-group">
                 <label>Password</label>
                 <div className="input-container">
-                  <span className="input-icon">🔒</span>
                   <input
                     type={showPassword ? 'text' : 'password'}
                     name="password"
@@ -131,7 +160,7 @@ const Login = () => {
                     className="toggle-password"
                     onClick={() => setShowPassword(!showPassword)}
                   >
-                    {showPassword ? '👁️' : '🙈'}
+                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                   </button>
                 </div>
               </div>

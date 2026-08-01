@@ -31,7 +31,44 @@ const Register = () => {
         {/* LEFT SIDE */}
         <div className="left-branding">
           <div className="brand-logo-row">
-            <div className="brand-icon">📄</div>
+            <div className="brand-icon">
+              <svg width="40" height="40" viewBox="0 0 120 120">
+                <defs>
+                  <path id="registerTopCirclePath" d="M 15,60 A 45,45 0 0 1 105,60" fill="none" />
+                  <path id="registerBottomCirclePath" d="M 105,62 A 45,45 0 0 1 15,62" fill="none" />
+                </defs>
+
+                <circle cx="60" cy="60" r="56" fill="none" stroke="currentColor" strokeWidth="2.5" />
+                <circle cx="60" cy="60" r="48" fill="none" stroke="currentColor" strokeWidth="1.2" />
+
+                <text fill="currentColor" fontSize="12" fontWeight="800" letterSpacing="3">
+                  <textPath href="#registerTopCirclePath" startOffset="50%" textAnchor="middle">
+                    INVOICE
+                  </textPath>
+                </text>
+
+                <text fill="currentColor" fontSize="12" fontWeight="800" letterSpacing="3">
+                  <textPath href="#registerBottomCirclePath" startOffset="50%" textAnchor="middle">
+                    INVOICE
+                  </textPath>
+                </text>
+
+                <g transform="rotate(-14 60 60)">
+                  <rect x="14" y="50" width="92" height="22" fill="currentColor" />
+                  <text
+                    x="60"
+                    y="66"
+                    fill="#0e1420"
+                    fontSize="16"
+                    fontWeight="900"
+                    textAnchor="middle"
+                    letterSpacing="1"
+                  >
+                    INVOICE
+                  </text>
+                </g>
+              </svg>
+            </div>
             <h1 className="brand-title">InvoiceHub</h1>
           </div>
 
