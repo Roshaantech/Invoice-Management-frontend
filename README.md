@@ -1,16 +1,33 @@
-# React + Vite
+# Invoice Management System — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+React (Vite) frontend for the Invoice Management System.
 
-Currently, two official plugins are available:
+## Tech Stack
+- React.js + React Router
+- Axios
+- Lucide React (icons)
+- CSS (custom dark theme)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
+- User registration & login
+- Protected dashboard with invoice statistics
+- Create, edit, delete invoices with dynamic line items
+- Real-time subtotal, tax, discount & grand total calculation
+- Public read-only invoice view with QR code
+- Print invoice & download as PDF
+- Search & filter invoices by status
 
-## React Compiler
+## Setup Instructions
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. Clone the repository
+```bash
+   git clone <your-repo-url>
+   cd frontend
+```
 
-## Expanding the Oxlint configuration
+2. Install dependencies
+```bash
+   npm install
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+3. Create a `.env` file in the root directory (see `.env.example`):
