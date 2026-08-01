@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Plus, Search, FileText, CheckCircle, Clock, FileEdit, Eye, Download, Trash2, Edit, Share2 } from 'lucide-react';
+import { Plus, Search, FileText, CheckCircle, Clock, FileEdit, Eye, Download, Trash2, Edit, Share2, Link2, X } from 'lucide-react';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
@@ -10,6 +10,17 @@ const Dashboard = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState('ALL');
   const [loading, setLoading] = useState(true);
+  const [toast, setToast] = useState(null); // { message, type }
+
+  const showToast = (message, type = 'success') => {
+    setToast({ message, type });
+  };
+
+  useEffect(() => {
+    if (!toast) return;
+    const timer = setTimeout(() => setToast(null), 3500);
+    return () => clearTimeout(timer);
+  }, [toast]);
 
   // Live data fetch on component mount
   useEffect(() => {
@@ -57,14 +68,14 @@ const Dashboard = () => {
       });
 
       if (response.ok) {
-        alert('Invoice deleted successfully!');
+        showToast('Invoice deleted successfully!', 'success');
         setInvoices(prev => prev.filter(inv => (inv._id || inv.id) !== id));
       } else {
-        alert('Failed to delete invoice from server.');
+        showToast('Failed to delete invoice from server.', 'error');
       }
     } catch (error) {
       console.error('Delete Invoice Error:', error);
-      alert('Error occurred while deleting invoice.');
+      showToast('Error occurred while deleting invoice.', 'error');
     }
   };
 
@@ -72,7 +83,7 @@ const Dashboard = () => {
   const handleShareLink = (shareId) => {
     const publicUrl = `${window.location.origin}/invoice/share/${shareId}`;
     navigator.clipboard.writeText(publicUrl);
-    alert(`Public Link Copied to Clipboard:\n${publicUrl}`);
+    showToast('Public link copied to clipboard!', 'success');
   };
 
   // Filtering Logic
@@ -100,6 +111,60 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
+      {/* Custom Toast Notification */}
+      {toast && (
+        <div
+          style={{
+            position: 'fixed',
+            top: '24px',
+            right: '24px',
+            zIndex: 9999,
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.75rem',
+            padding: '0.9rem 1.25rem',
+            borderRadius: '12px',
+            background: '#121b30',
+            border: `1px solid ${toast.type === 'error' ? '#EF4444' : '#3B82F6'}`,
+            boxShadow: '0 8px 24px rgba(0,0,0,0.4)',
+            minWidth: '280px',
+            maxWidth: '380px',
+            animation: 'toastSlideIn 0.25s ease-out'
+          }}
+        >
+          <style>{`
+            @keyframes toastSlideIn {
+              from { transform: translateX(30px); opacity: 0; }
+              to { transform: translateX(0); opacity: 1; }
+            }
+          `}</style>
+          <div
+            style={{
+              flexShrink: 0,
+              height: '32px',
+              width: '32px',
+              borderRadius: '8px',
+              background: toast.type === 'error' ? 'rgba(239,68,68,0.15)' : 'rgba(59,130,246,0.15)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: toast.type === 'error' ? '#EF4444' : '#3B82F6'
+            }}
+          >
+            {toast.type === 'error' ? <X size={16} /> : <Link2 size={16} />}
+          </div>
+          <p style={{ color: '#E2E8F0', fontSize: '0.85rem', margin: 0, flex: 1, wordBreak: 'break-word' }}>
+            {toast.message}
+          </p>
+          <button
+            onClick={() => setToast(null)}
+            style={{ background: 'none', border: 'none', color: '#94A3B8', cursor: 'pointer', padding: '2px' }}
+          >
+            <X size={14} />
+          </button>
+        </div>
+      )}
+
       <header className="dashboard-header">
         <div className="header-title">
           <h1>Invoice Operations</h1>

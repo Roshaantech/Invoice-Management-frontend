@@ -1,14 +1,12 @@
 import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { Eye, EyeOff } from 'lucide-react';
 import { AuthContext } from '../context/AuthContext';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
-  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const { login } = useContext(AuthContext);
@@ -130,7 +128,6 @@ const Login = () => {
               <div className="form-group">
                 <label>Email Address</label>
                 <div className="input-container">
-                  <span className="input-icon">✉</span>
                   <input
                     type="email"
                     name="email"
@@ -147,7 +144,7 @@ const Login = () => {
                 <label>Password</label>
                 <div className="input-container">
                   <input
-                    type={showPassword ? 'text' : 'password'}
+                    type="password"
                     name="password"
                     placeholder="Enter your password"
                     value={formData.password}
@@ -155,13 +152,6 @@ const Login = () => {
                     className="custom-input"
                     required
                   />
-                  <button
-                    type="button"
-                    className="toggle-password"
-                    onClick={() => setShowPassword(!showPassword)}
-                  >
-                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                  </button>
                 </div>
               </div>
 
