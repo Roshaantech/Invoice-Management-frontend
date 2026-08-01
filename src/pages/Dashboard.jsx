@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Plus, Search, FileText, CheckCircle, Clock, FileEdit, Eye, Download, Trash2, Edit, Share2 } from 'lucide-react';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+
 const Dashboard = () => {
   const navigate = useNavigate();
   const [invoices, setInvoices] = useState([]);
@@ -20,7 +22,7 @@ const Dashboard = () => {
       const token = localStorage.getItem('token'); // JWT token from local storage
 
       // Assessment API requirement: Protected GET /api/invoices or /api/invoice
-      const response = await fetch('http://localhost:5000/api/invoices', {
+      const response = await fetch(`${API_URL}/invoices`, {
         headers: {
           'Authorization': token ? `Bearer ${token}` : '',
           'Content-Type': 'application/json'
@@ -46,7 +48,7 @@ const Dashboard = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/invoice/${id}`, {
+      const response = await fetch(`${API_URL}/invoice/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': token ? `Bearer ${token}` : '',
