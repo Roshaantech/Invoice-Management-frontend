@@ -217,7 +217,7 @@ const CreateInvoice = ({ onSaveInvoice }) => {
         <div className="table-wrapper" style={{ padding: '2.5rem', marginBottom: '2rem' }}>
 
           {/* Invoice Meta Row */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--border-color)', paddingBottom: '1.5rem', marginBottom: '2rem' }}>
+          <div className="invoice-meta-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--border-color)', paddingBottom: '1.5rem', marginBottom: '2rem' }}>
             <div>
               <span style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: '700' }}>
                 Invoice Reference
@@ -226,7 +226,7 @@ const CreateInvoice = ({ onSaveInvoice }) => {
                 #{invoiceNumber}
               </h2>
             </div>
-            <div style={{ display: 'flex', gap: '1rem', width: '400px' }}>
+            <div className="invoice-meta-controls" style={{ display: 'flex', gap: '1rem', width: '400px' }}>
               <div className="form-group" style={{ flex: 1, margin: 0 }}>
                 <label>Status</label>
                 <select

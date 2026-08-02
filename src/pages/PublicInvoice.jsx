@@ -139,18 +139,18 @@ const response = await fetch(`${API_URL}/public/invoice/${invoiceKey}`);
         </div>
       </div>
 
-      {/* Invoice Card */}
-      <div
-        id="printable-invoice"
-        style={{
-          padding: '3rem',
-          maxWidth: '900px',
-          margin: '0 auto',
-          background: cardBg,
-          borderRadius: '16px',
-          border: `1px solid ${borderClr}`
-        }}
-      >
+      <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+        <div
+          id="printable-invoice"
+          style={{
+            padding: '3rem',
+            width: '900px',
+            margin: '0 auto',
+            background: cardBg,
+            borderRadius: '16px',
+            border: `1px solid ${borderClr}`
+          }}
+        ></div>
         {/* Letterhead */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', paddingBottom: '2rem', marginBottom: '2rem', borderBottom: `1px solid ${borderClr}` }}>
           <div style={{ display: 'flex', gap: '0.9rem', alignItems: 'flex-start' }}>
