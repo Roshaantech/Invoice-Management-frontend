@@ -726,3 +726,88 @@ select.custom-input option {
   border: 1px solid rgba(239, 68, 68, 0.3);
   color: #EF4444;
 }
+/* ==========================================================================
+   MOBILE-ONLY FIXES (does not affect desktop/laptop — max-width: 600px)
+   ========================================================================== */
+@media (max-width: 600px) {
+
+  .dashboard-container {
+    padding: 1rem;
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .header-actions {
+    width: 100%;
+  }
+
+  .header-actions .btn-create-invoice {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Stat cards: 1 per row instead of squeezing 2-3 in */
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  /* Search + filter bar: stack vertically */
+  .filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-box {
+    min-width: 100%;
+  }
+
+  .filter-options {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+  }
+
+  .filter-btn {
+    flex-shrink: 0;
+  }
+
+  /* Table: allow horizontal scroll instead of squashing columns */
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  .custom-table {
+    min-width: 640px;
+  }
+
+  /* Action icons: tighter spacing so they don't overlap */
+  .action-btns {
+    gap: 0.35rem;
+  }
+
+  .action-btn {
+    width: 30px;
+    height: 30px;
+  }
+
+  /* Invoice form line items: stack fields instead of forcing a tight grid */
+  .invoice-item-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  /* Auth split layout (login/register) tighter on very small phones */
+  .left-branding,
+  .right-card-wrapper {
+    padding: 2rem 1.5rem;
+  }
+
+  .main-heading {
+    font-size: 1.6rem;
+  }
+}
